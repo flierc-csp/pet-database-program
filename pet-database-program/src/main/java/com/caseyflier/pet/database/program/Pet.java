@@ -12,6 +12,7 @@ public class Pet {
     private int id;
     private String name;
     private int age;
+    static protected int lastInsertId = 0;
     
     public Pet(String name, int age){
     
@@ -43,5 +44,12 @@ public class Pet {
     
     public int getAge(){
         return this.age;
+    }
+    
+    /**
+     * Handle pet addition to the database
+     */
+    public static void addNewPet(){
+        
     }
 }
