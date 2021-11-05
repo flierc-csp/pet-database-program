@@ -32,6 +32,6 @@ public class Menu {
         options.forEach((option) -> {
             System.out.print(option);
         });
-        System.out.print("Your choice: ");
+        System.out.println("\nYour choice: ");
     }
 }
