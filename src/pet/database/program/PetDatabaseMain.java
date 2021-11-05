@@ -24,7 +24,7 @@ public class PetDatabaseMain {
             
             switch(selectedOption){
                 case "1":
-                    
+                    Pet.viewAllPets();
                     break;
                 case "2":
                     Pet.addPet();

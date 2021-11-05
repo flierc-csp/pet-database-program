@@ -58,12 +58,22 @@ public class Pet {
         String[] params = input.split(" ");
         
         String name = params[0];
-        
+        int age;
         
         try{
-            int age = Integer.parseInt(params[1]);
+            age = Integer.parseInt(params[1]);
         }catch(NumberFormatException exception){
+            System.out.println("Input is not valid");
             return;
         }
+        
+        Pet newPet = new Pet(name, age);
+        Pet.pets.add(newPet);
+    }
+    
+    public static void viewAllPets(){
+        pets.forEach((pet) -> {
+            System.out.println(pet.getName());
+        });
     }
 }
