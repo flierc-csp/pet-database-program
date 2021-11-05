@@ -49,17 +49,21 @@ public class Pet {
         return this.age;
     }
     
-    public static Pet addPet(){
+    public static void addPet(){
     
         Scanner scanner = new Scanner(System.in);
-        System.out.print("add pet(name, age): ");
+        System.out.print("add pet(name, age):");
         
         String input = scanner.nextLine();
         String[] params = input.split(" ");
         
         String name = params[0];
-        int age = Integer.parseInt(params[1]);
-   
-        return new Pet(name, age);      
+        
+        
+        try{
+            int age = Integer.parseInt(params[1]);
+        }catch(NumberFormatException exception){
+            return;
+        }
     }
 }
