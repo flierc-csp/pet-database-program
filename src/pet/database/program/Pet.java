@@ -53,10 +53,15 @@ public class Pet {
     
         String input = "";
         
-        while(!input.equals("done")){
+        while(true){
             Scanner scanner = new Scanner(System.in);
             System.out.print("add pet(name, age):");
             input = scanner.nextLine();
+            
+            if(input.equals("done")){
+                return;
+            }
+            
             String[] params = input.split(" ");
 
             String name = params[0];

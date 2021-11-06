@@ -17,13 +17,13 @@ public class TableHelper {
     
     public static void printHeader(){
    
-        System.out.print("+------------------------+\n");
+        System.out.print("+-------------------------+\n");
         System.out.print("| ID  | NAME     | AGE   |\n");
-        System.out.print("+------------------------+\n");
+        System.out.print("+-------------------------+\n");
     }
     
     public static void printLine(Pet pet){
-        System.out.printf("| %-3s| %-10s| %-4s|%n",pet.getId(),pet.getName(),pet.getAge());
+        System.out.printf("| %-3s | %-10s | %-4s |%n",pet.getId(),pet.getName(),pet.getAge());
     }
     
     public static void printFooter(int petLength){
