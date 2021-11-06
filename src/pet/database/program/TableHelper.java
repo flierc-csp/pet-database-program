@@ -23,12 +23,12 @@ public class TableHelper {
     }
     
     public static void printLine(Pet pet){
-        System.out.printf(" |%7s|%10s|%7s",pet.getId(),pet.getName(),pet.getAge());
+        System.out.printf("| %-3s| %-10s| %-4s|%n",pet.getId(),pet.getName(),pet.getAge());
     }
     
     public static void printFooter(int petLength){
    
         System.out.print("+------------------------+\n");
-        System.out.print(petLength + " rows in set.");
+        System.out.print(petLength + " rows in set.\n");
     }
 }
