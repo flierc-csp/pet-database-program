@@ -27,7 +27,7 @@ public class PetDatabaseMain {
                     Pet.viewAllPets();
                     break;
                 case "2":
-                    Pet.addPet();
+                    Pet.addPets();
                     break;
                 case "3":
                     

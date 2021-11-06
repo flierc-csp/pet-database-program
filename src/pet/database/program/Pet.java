@@ -49,28 +49,31 @@ public class Pet {
         return this.age;
     }
     
-    public static void addPet(){
+    public static void addPets(){
     
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("add pet(name, age):");
+        String input = "";
         
-        String input = scanner.nextLine();
-        String[] params = input.split(" ");
-        
-        String name = params[0];
-        int age = 0;
-        
-        try{
-            age = Integer.parseInt(params[1]);
-        }catch(NumberFormatException exception){
-            System.out.println("Input is not valid");
-            return;
-        }catch(ArrayIndexOutOfBoundsException oobException){
-            System.out.println("Input is not valid");
+        while(!input.equals("done")){
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("add pet(name, age):");
+            input = scanner.nextLine();
+            String[] params = input.split(" ");
+
+            String name = params[0];
+            int age = 0;
+
+            try{
+                age = Integer.parseInt(params[1]);
+            }catch(NumberFormatException exception){
+                System.out.println("Input is not valid");
+                return;
+            }catch(ArrayIndexOutOfBoundsException oobException){
+                System.out.println("Input is not valid");
+            }
+
+            Pet newPet = new Pet(name, age);
+            Pet.pets.add(newPet);
         }
-        
-        Pet newPet = new Pet(name, age);
-        Pet.pets.add(newPet);
     }
     
     public static void viewAllPets(){
