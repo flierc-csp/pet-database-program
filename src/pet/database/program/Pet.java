@@ -58,13 +58,15 @@ public class Pet {
         String[] params = input.split(" ");
         
         String name = params[0];
-        int age;
+        int age = 0;
         
         try{
             age = Integer.parseInt(params[1]);
         }catch(NumberFormatException exception){
             System.out.println("Input is not valid");
             return;
+        }catch(ArrayIndexOutOfBoundsException oobException){
+            System.out.println("Input is not valid");
         }
         
         Pet newPet = new Pet(name, age);
@@ -72,8 +74,13 @@ public class Pet {
     }
     
     public static void viewAllPets(){
+        
+        TableHelper.printHeader();   
+        
         pets.forEach((pet) -> {
-            System.out.println(pet.getName());
+           TableHelper.printLine(pet);
         });
+        
+        TableHelper.printFooter(pets.size());
     }
 }
