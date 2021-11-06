@@ -36,10 +36,10 @@ public class PetDatabaseMain {
                     
                     break;
                 case "5":
-                    
+                    Pet.searchPetsByName();
                     break;
                 case "6":
-                    
+                    Pet.searchPetsByAge();
                     break;
                 default:
                     //

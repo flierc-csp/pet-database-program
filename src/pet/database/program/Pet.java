@@ -81,6 +81,49 @@ public class Pet {
         }
     }
     
+    public static void searchPetsByName(){
+    
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter name to search:");
+        
+        String input = scanner.nextLine();
+        int resultCount = 0;
+        TableHelper.printHeader();
+              
+        for(Pet pet : Pet.pets){
+        
+            if(pet.name.contains(input)){
+                TableHelper.printLine(pet);
+                resultCount ++;
+            }
+        }
+        
+        TableHelper.printFooter(resultCount);
+    }
+    
+        public static void searchPetsByAge(){
+    
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter age to search:");
+        
+        String input = scanner.nextLine();
+        int age = Integer.parseInt(input);
+            
+        
+        int resultCount = 0;
+        TableHelper.printHeader();
+              
+        for(Pet pet : Pet.pets){
+        
+            if(pet.age == age){
+                TableHelper.printLine(pet);
+                resultCount ++;
+            }
+        }
+        
+        TableHelper.printFooter(resultCount);
+    }
+        
     public static void viewAllPets(){
         
         TableHelper.printHeader();   

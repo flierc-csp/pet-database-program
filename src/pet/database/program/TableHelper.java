@@ -8,6 +8,10 @@ import java.util.ArrayList;
  * CSC415
  * Assignment 1 - Part 2
  * 2021-11-07
+ * 
+ * 
+ * System.out.printf() syntax found at:
+ * https://alvinalexander.com/programming/printf-format-cheat-sheet/
  */
 public class TableHelper {
     
