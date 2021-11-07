@@ -18,11 +18,29 @@ public class Pet {
     static protected int lastInsertId = 0;
     static protected ArrayList<Pet> pets = new ArrayList<>();
     
+/**
+ * Constructor that automatically sets the id
+ * @param name
+ * @param age 
+ */
     public Pet(String name, int age){
     
-        this.id = Pet.lastInsertId++;
+        this.id = ++Pet.lastInsertId;
         this.name = name;
-        this.age = age;
+        this.age = age;    
+    }
+    
+    /**
+     * Constructor must be passed an id
+     * @param name
+     * @param age
+     * @param id 
+     */
+    public Pet(String name, int age, int id){
+    
+        this.id = id;
+        this.name = name;
+        this.age = age;    
     }
     
     public void setId(int id){
@@ -62,23 +80,32 @@ public class Pet {
                 return;
             }
             
+            try{
+                Pet newPet = Pet.parsePetString(input);
+                Pet.pets.add(newPet);
+            }catch(Exception exception){
+                System.out.println("Input is not valid");
+            }
+        }
+    }
+    
+    private static Pet parsePetString(String input) throws Exception{
             String[] params = input.split(" ");
 
             String name = params[0];
-            int age = 0;
+            int age = Integer.parseInt(params[1]);
 
-            try{
-                age = Integer.parseInt(params[1]);
-            }catch(NumberFormatException exception){
-                System.out.println("Input is not valid");
-                return;
-            }catch(ArrayIndexOutOfBoundsException oobException){
-                System.out.println("Input is not valid");
-            }
+           return new Pet(name, age);
+    }
+    
+    private static Pet parsePetString(String input, int ID){
+    
+        String[] params = input.split(" ");
 
-            Pet newPet = new Pet(name, age);
-            Pet.pets.add(newPet);
-        }
+        String name = params[0];
+        int age = Integer.parseInt(params[1]);
+
+        return new Pet(name, age, ID);
     }
     
     public static void searchPetsByName(){
@@ -162,5 +189,52 @@ public class Pet {
         }
         
         System.out.println("Pet not removed because it couldn't be found.");
+    }
+    
+    public static void updatePet(){
+    
+        Pet.viewAllPets();
+        
+        System.out.print("Enter id of pet to update:");
+        
+        Scanner scanner = new Scanner(System.in);
+        int updateId = 0;
+        int updateIndex = -1;
+        
+        try{
+            updateId = Integer.parseInt(scanner.nextLine());
+        }catch(NumberFormatException exception){
+            System.out.println("Input is not valid");
+            return;
+        }
+        
+        for(int i=0; i < Pet.pets.size(); i++){
+            Pet currentPet = Pet.pets.get(i);
+            
+            if(currentPet.id == updateId){
+              updateIndex = i;
+            }
+        } 
+        
+       if(updateIndex == -1){
+           System.out.println("That id was not found.");
+           return;
+       }
+       
+       System.out.print("Enter new name and age:");
+       
+       String input = scanner.nextLine();
+       Pet updatedPet = null;
+       
+       try{
+           updatedPet = Pet.parsePetString(input, updateId);
+       }catch(Exception exception){
+           System.out.println("The update information entered was not valid.");
+       }
+       
+       Pet oldPet = Pet.pets.get(updateIndex);
+       Pet.pets.set(updateIndex, updatedPet);
+       
+       System.out.println(oldPet.getName() + " " + oldPet.getAge() + " updated to " + updatedPet.getName() + " " + updatedPet.getAge());
     }
 }

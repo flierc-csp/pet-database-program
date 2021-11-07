@@ -30,7 +30,7 @@ public class PetDatabaseMain {
                     Pet.addPets();
                     break;
                 case "3":
-                    
+                    Pet.updatePet();
                     break;
                 case "4":
                     Pet.removePet();
