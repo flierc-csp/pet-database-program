@@ -67,6 +67,9 @@ public class Pet {
         return this.age;
     }
     
+    /**
+     * Within a loop, ask user to input a new pet, parse the string, and add it to the array
+     */
     public static void addPets(){
     
         String input = "";
@@ -89,6 +92,12 @@ public class Pet {
         }
     }
     
+    /**
+     * Parse the string input by the user into a new Pet object.
+     * @param input
+     * @return
+     * @throws Exception 
+     */
     private static Pet parsePetString(String input) throws Exception{
             String[] params = input.split(" ");
 
@@ -98,6 +107,12 @@ public class Pet {
            return new Pet(name, age);
     }
     
+    /**
+     * Parse a new pet string, but set the id of the pet to the one provided
+     * @param input
+     * @param ID
+     * @return 
+     */
     private static Pet parsePetString(String input, int ID){
     
         String[] params = input.split(" ");
@@ -108,6 +123,9 @@ public class Pet {
         return new Pet(name, age, ID);
     }
     
+    /**
+     * Ask user for a search string, and search the array of pets for matches
+     */
     public static void searchPetsByName(){
     
         Scanner scanner = new Scanner(System.in);
@@ -128,7 +146,10 @@ public class Pet {
         TableHelper.printFooter(resultCount);
     }
     
-        public static void searchPetsByAge(){
+    /**
+     * Ask the user to input an age, and search the array for pets who are that age
+     */
+    public static void searchPetsByAge(){
     
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter age to search:");
@@ -151,6 +172,10 @@ public class Pet {
         TableHelper.printFooter(resultCount);
     }
         
+    
+    /**
+     * List all pets in the array
+     */
     public static void viewAllPets(){
         
         TableHelper.printHeader();   
@@ -162,6 +187,9 @@ public class Pet {
         TableHelper.printFooter(pets.size());
     }
     
+    /**
+     * Print all pets, ask the user for the id of the pet to remove, and remove it
+     */
     public static void removePet(){
     
         Pet.viewAllPets();
@@ -191,6 +219,14 @@ public class Pet {
         System.out.println("Pet not removed because it couldn't be found.");
     }
     
+    /**
+     * Print all pets
+     * Ask the user which pet to update
+     * Ask the user for a new string
+     * Parse the string into a Pet, and set the ID to the one supplied
+     * Add the pet to the array
+     * Print the changes
+     */
     public static void updatePet(){
     
         Pet.viewAllPets();
@@ -230,6 +266,7 @@ public class Pet {
            updatedPet = Pet.parsePetString(input, updateId);
        }catch(Exception exception){
            System.out.println("The update information entered was not valid.");
+           return;
        }
        
        Pet oldPet = Pet.pets.get(updateIndex);

@@ -11,7 +11,9 @@ import java.util.Scanner;
 public class PetDatabaseMain {
 
     /**
-     * @param args the command line arguments
+     * Print the menu and ask the user which option they would like
+     * After they have completed the activity, repeat the process until the user chooses option 7
+     * @param args
      */
     public static void main(String[] args) {
         Menu menu = new Menu();
@@ -41,8 +43,6 @@ public class PetDatabaseMain {
                 case "6":
                     Pet.searchPetsByAge();
                     break;
-                default:
-                    //
             }
         }
          System.out.println("Goodbye!");        
