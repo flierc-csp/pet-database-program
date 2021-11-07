@@ -134,4 +134,33 @@ public class Pet {
         
         TableHelper.printFooter(pets.size());
     }
+    
+    public static void removePet(){
+    
+        Pet.viewAllPets();
+        System.out.print("Enter the pet ID to remove:");
+        
+        Scanner scanner = new Scanner(System.in);
+        
+        int petId = 0;
+        
+        try{
+            petId = Integer.parseInt(scanner.nextLine());
+        }catch(NumberFormatException exception){
+            System.out.println("Input is not valid");
+            return;
+        }
+        
+        for(int i=0; i < Pet.pets.size(); i++){
+            Pet currentPet = Pet.pets.get(i);
+            
+            if(currentPet.id == petId){
+              pets.remove(i);
+              System.out.println(currentPet.name + " " + currentPet.age + " removed.");
+              return;
+            }
+        }
+        
+        System.out.println("Pet not removed because it couldn't be found.");
+    }
 }

@@ -33,7 +33,7 @@ public class PetDatabaseMain {
                     
                     break;
                 case "4":
-                    
+                    Pet.removePet();
                     break;
                 case "5":
                     Pet.searchPetsByName();
