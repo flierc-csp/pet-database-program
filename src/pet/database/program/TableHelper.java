@@ -1,7 +1,5 @@
 package pet.database.program;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author Casey Flier
@@ -26,10 +24,19 @@ public class TableHelper {
         System.out.print("+-------------------------+\n");
     }
     
+    /**
+     * Print the id, name, and age 
+     * @param pet 
+     */
     public static void printLine(Pet pet){
         System.out.printf("| %-3s | %-10s | %-4s |%n",pet.getId(),pet.getName(),pet.getAge());
     }
     
+    
+    /**
+     * Print the footer and the number of rows printed
+     * @param petLength 
+     */
     public static void printFooter(int petLength){
    
         System.out.print("+------------------------+\n");

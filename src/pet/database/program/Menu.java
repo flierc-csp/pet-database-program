@@ -12,6 +12,9 @@ import java.util.ArrayList;
 public class Menu {
     private ArrayList<String> options = new ArrayList<>();
     
+    /**
+     * On instantiation, add options to the options array
+     */
     public Menu(){
         options.add("1) View all pets\n");
         options.add("2) Add more pets\n");
