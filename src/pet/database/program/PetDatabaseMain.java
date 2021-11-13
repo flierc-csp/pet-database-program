@@ -1,4 +1,5 @@
 package pet.database.program;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -22,6 +23,15 @@ public class PetDatabaseMain {
         Scanner input = new Scanner(System.in);
         String selectedOption = "";
         
+        try{
+            FileHelper.readPets();
+        }catch(IOException ioException){
+            System.out.println("Something went wrong while reading Pets from file.");
+        }catch(ClassNotFoundException classNotFoundException){
+            System.out.println("Pet class could not be found.");
+        }
+        
+        
         while(!selectedOption.equals("4")){
             menu.printMenu();
             selectedOption = input.nextLine();
@@ -35,7 +45,7 @@ public class PetDatabaseMain {
         
         
         try{
-            FileHelper.savePets();
+            FileHelper.savePets(Pet.pets);
         }catch(IOException ioException){
            System.out.println(ioException.getMessage());
            System.out.println("An error occurred while saving the Pet Database. Pets were not saved."); 
