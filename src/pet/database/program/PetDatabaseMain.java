@@ -27,7 +27,7 @@ public class PetDatabaseMain {
             switch(selectedOption){
                 case "1" -> Pet.viewAllPets();
                 case "2" -> Pet.addPets();
-                case "4" -> Pet.removePet();
+                case "3" -> Pet.removePet();
             }
         }
          System.out.println("Goodbye!");        
