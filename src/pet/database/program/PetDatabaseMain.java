@@ -1,4 +1,5 @@
 package pet.database.program;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -6,7 +7,8 @@ import java.util.Scanner;
  * @author Casey Flier
  * CSC415
  * Assignment 1 - Part 2
- * 2021-11-07
+ * Created: 2021-11-07
+ * Updated: 2021-11-12
  */
 public class PetDatabaseMain {
 
@@ -20,7 +22,7 @@ public class PetDatabaseMain {
         Scanner input = new Scanner(System.in);
         String selectedOption = "";
         
-        while(!selectedOption.equals("7")){
+        while(!selectedOption.equals("4")){
             menu.printMenu();
             selectedOption = input.nextLine();
             
@@ -29,6 +31,14 @@ public class PetDatabaseMain {
                 case "2" -> Pet.addPets();
                 case "3" -> Pet.removePet();
             }
+        }
+        
+        
+        try{
+            FileHelper.savePets();
+        }catch(IOException ioException){
+           System.out.println(ioException.getMessage());
+           System.out.println("An error occurred while saving the Pet Database. Pets were not saved."); 
         }
          System.out.println("Goodbye!");        
     }

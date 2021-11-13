@@ -18,11 +18,8 @@ public class Menu {
     public Menu(){
         options.add("1) View all pets\n");
         options.add("2) Add more pets\n");
-        options.add("3) Update an existing pet\n");
-        options.add("4) Remove an existing pet\n");
-        options.add("5) Search pets by name\n");
-        options.add("6) Search pets by age\n");
-        options.add("7) Exit program\n");
+        options.add("3) Remove an existing pet\n");
+        options.add("4) Exit program\n");
     }
     
     /**

@@ -1,5 +1,6 @@
 package pet.database.program;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -8,9 +9,10 @@ import java.util.Scanner;
  * @author Casey Flier
  * CSC415
  * Assignment 1 - Part 2
- * 2021-11-07
+ * Created: 2021-11-07
+ * Updated: 2021-11-12
  */
-public class Pet {
+public class Pet implements Serializable{
     
     private int id;
     private String name;
