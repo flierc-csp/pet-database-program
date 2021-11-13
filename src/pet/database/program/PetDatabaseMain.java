@@ -1,6 +1,7 @@
 package pet.database.program;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -24,7 +25,9 @@ public class PetDatabaseMain {
         String selectedOption = "";
         
         try{
-            FileHelper.readPets();
+            ArrayList<Pet> pets = FileHelper.readPets();
+        }catch(FileNotFoundException fileNotFoundException){
+            System.out.println("No file for pets exists, so a file will be created.");
         }catch(IOException ioException){
             System.out.println("Something went wrong while reading Pets from file.");
         }catch(ClassNotFoundException classNotFoundException){

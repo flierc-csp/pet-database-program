@@ -29,11 +29,13 @@ public class FileHelper {
     static ArrayList<Pet> readPets() throws IOException, ClassNotFoundException{
     
       FileInputStream file = new FileInputStream("./pets.dat");
-      ObjectInputStream inputStream = new ObjectInputStream(file);
-
-      ArrayList<Pet> pets = (ArrayList) inputStream.readObject();
-      inputStream.close();
-      
+      ArrayList<Pet> pets;
+        try (ObjectInputStream inputStream = new ObjectInputStream(file)) {
+            pets = (ArrayList) inputStream.readObject();
+        }
+        
+        Pet.loadPets(pets);
+              
       return pets;
     }
 }

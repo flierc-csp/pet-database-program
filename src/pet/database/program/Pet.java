@@ -276,4 +276,28 @@ public class Pet implements Serializable{
        
        System.out.println(oldPet.getName() + " " + oldPet.getAge() + " updated to " + updatedPet.getName() + " " + updatedPet.getAge());
     }
+    
+    
+    /**
+     * Loads pets read from file into the protected pets ArrayList
+     * @param pets 
+     */
+    static void loadPets(ArrayList<Pet> pets){
+        Pet.pets = pets;
+        Pet.setLastInsertId();
+    }
+    
+    /**
+     * Find and set the highest id in case of loading from file
+     */
+    static void setLastInsertId(){
+        int lastInsertID = 0;
+        for(Pet pet : Pet.pets){
+            if(pet.getId() > lastInsertID){
+                lastInsertID = pet.getId();
+            }
+        }
+        
+        Pet.lastInsertId = lastInsertID;
+    }
 }
