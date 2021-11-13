@@ -25,24 +25,9 @@ public class PetDatabaseMain {
             selectedOption = input.nextLine();
             
             switch(selectedOption){
-                case "1":
-                    Pet.viewAllPets();
-                    break;
-                case "2":
-                    Pet.addPets();
-                    break;
-                case "3":
-                    Pet.updatePet();
-                    break;
-                case "4":
-                    Pet.removePet();
-                    break;
-                case "5":
-                    Pet.searchPetsByName();
-                    break;
-                case "6":
-                    Pet.searchPetsByAge();
-                    break;
+                case "1" -> Pet.viewAllPets();
+                case "2" -> Pet.addPets();
+                case "4" -> Pet.removePet();
             }
         }
          System.out.println("Goodbye!");        
