@@ -7,10 +7,10 @@ import java.util.Scanner;
 /**
  *
  * @author Casey Flier
- * CSC415
+ * CSC422
  * Assignment 1 - Part 2
  * Created: 2021-11-07
- * Updated: 2021-11-12
+ * Updated: 2021-11-13
  */
 public class PetDatabaseMain {
 

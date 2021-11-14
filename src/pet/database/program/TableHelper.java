@@ -3,7 +3,7 @@ package pet.database.program;
 /**
  *
  * @author Casey Flier
- * CSC415
+ * CSC422
  * Assignment 1 - Part 2
  * 2021-11-07
  * 

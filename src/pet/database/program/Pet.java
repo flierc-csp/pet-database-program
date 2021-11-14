@@ -7,10 +7,10 @@ import java.util.Scanner;
 /**
  *
  * @author Casey Flier
- * CSC415
+ * CSC422
  * Assignment 1 - Part 2
  * Created: 2021-11-07
- * Updated: 2021-11-12
+ * Updated: 2021-11-13
  */
 public class Pet implements Serializable{
     
@@ -83,13 +83,21 @@ public class Pet implements Serializable{
             
             if(input.equals("done")){
                 return;
+            }else{
+                
+                if(Pet.pets.size() >= 5){
+                    System.out.println("---------------------------");
+                    System.out.println("Database is full.");
+                    System.out.println("---------------------------");
+                    return;
+                }
             }
             
             try{
-                Pet newPet = Pet.parsePetString(input);
+                Pet newPet = Pet.parsePetString(input);                
                 Pet.pets.add(newPet);
             }catch(Exception exception){
-                System.out.println("Input is not valid");
+                System.out.println(exception.getMessage());
             }
         }
     }
@@ -100,13 +108,29 @@ public class Pet implements Serializable{
      * @return
      * @throws Exception 
      */
-    private static Pet parsePetString(String input) throws Exception{
-            String[] params = input.split(" ");
-
-            String name = params[0];
-            int age = Integer.parseInt(params[1]);
-
-           return new Pet(name, age);
+    private static Pet parsePetString(String input) throws PetFormatException, PetAgeException{
+            
+        String[] params = input.split(" ");
+            
+        //There must be both a name and an age, but no more than that.
+        if(params.length != 2){
+            throw new PetFormatException(input);
+       }
+            
+        String name = params[0];
+        int age;
+        
+        try{
+            age = Integer.parseInt(params[1]);
+        }catch(NumberFormatException numberFormatException){
+            throw new PetFormatException(input);
+        }
+        
+        if(age > 20 | age < 1){
+            throw new PetAgeException(age);
+        }
+        
+        return new Pet(name, age);
     }
     
     /**
@@ -200,11 +224,18 @@ public class Pet implements Serializable{
         Scanner scanner = new Scanner(System.in);
         
         int petId = 0;
+        String input = "";
         
         try{
-            petId = Integer.parseInt(scanner.nextLine());
+            input = scanner.nextLine();
+            petId = Integer.parseInt(input);
         }catch(NumberFormatException exception){
-            System.out.println("Input is not valid");
+            System.out.println(input + " is not a valid ID.");
+            return;
+        }
+        
+        if(petId < 0){
+            System.out.println(input + " is not a valid ID.");
             return;
         }
         
@@ -218,7 +249,7 @@ public class Pet implements Serializable{
             }
         }
         
-        System.out.println("Pet not removed because it couldn't be found.");
+        System.out.println("Error: ID " + petId + " does not exist.");
     }
     
     /**
@@ -236,13 +267,14 @@ public class Pet implements Serializable{
         System.out.print("Enter id of pet to update:");
         
         Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
         int updateId = 0;
         int updateIndex = -1;
         
         try{
-            updateId = Integer.parseInt(scanner.nextLine());
+            updateId = Integer.parseInt(input);
         }catch(NumberFormatException exception){
-            System.out.println("Input is not valid");
+            System.out.println(input + " is not a valid ID.");
             return;
         }
         
@@ -255,19 +287,19 @@ public class Pet implements Serializable{
         } 
         
        if(updateIndex == -1){
-           System.out.println("That id was not found.");
+           System.out.println("Error: ID " + input + " does not exist.");
            return;
        }
        
        System.out.print("Enter new name and age:");
        
-       String input = scanner.nextLine();
+       input = scanner.nextLine();
        Pet updatedPet = null;
        
        try{
            updatedPet = Pet.parsePetString(input, updateId);
        }catch(Exception exception){
-           System.out.println("The update information entered was not valid.");
+           System.out.println(exception.getMessage());
            return;
        }
        
@@ -299,5 +331,18 @@ public class Pet implements Serializable{
         }
         
         Pet.lastInsertId = lastInsertID;
+    }
+}
+
+class PetFormatException extends Exception{
+
+    public PetFormatException(String input){
+        super("Error: " + input + " is not a valid input.");
+    }
+}
+
+class PetAgeException extends Exception{
+    public PetAgeException(int age){
+        super("Error: " + age + " is not a valid age.");
     }
 }
